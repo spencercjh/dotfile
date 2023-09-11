@@ -1,0 +1,16 @@
+[user]
+	name = spencercjh
+	email = spencercjh@gmail.com
+	signingkey =  
+[commit]
+	gpgsign = true
+[core]
+  autocrlf = input
+  editor = vim
+  pager = less --mouse
+  excludesfile = /home/spencercjh/.gitignore
+[init]
+  defaultBranch = main
+[tag]
+  forceSignAnnotated = true
+
