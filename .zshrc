@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -129,9 +132,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Java
-export GRAALVM_HOME="/Users/spencercjh/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home/bin"
-export PATH=/Users/spencercjh/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home/bin:$PATH
-export JAVA_HOME="/Users/spencercjh/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home"
+export GRAALVM_HOME="$HOME/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home/bin"
+export PATH="$HOME/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home/bin:$PATH"
+export JAVA_HOME="$HOME/Library/Java/JavaVirtualMachines/graalvm-ce-17/Contents/Home"
 
 # go
 export GONOPROXY=""
@@ -140,13 +143,19 @@ export GOPROXY="https://goproxy.cn,direct"
 export GO111MODULE=on
 export GIT_TERMINAL_PROMPT=1
 export GOPATH="/Users/spencercjh/go"
-export PATH=$PATH:/Users/spencercjh/go/bin
+export CGO_ENABLED=0
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOROOT/bin:$PATH"
 
 # kubectx
 alias kctx='kubectx'
 alias kns='kubens'
 #kube-ps1
 export PROMPT='$(kube_ps1)'$PROMPT # or RPROMPT='$(kube_ps1)'
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# kubectl completion
+source <(kubectl completion zsh)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # podman
@@ -155,6 +164,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
