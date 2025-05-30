@@ -5,5 +5,4 @@ spencercjh's dotfile including:
 - vimrc
 - gitconfig
 - gitignore
-- TBD
-
+- setup script
