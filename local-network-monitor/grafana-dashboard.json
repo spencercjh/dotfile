@@ -25,8 +25,8 @@
     },
     {
       "type": "panel",
-      "id": "status-history",
-      "name": "Status history",
+      "id": "state-timeline",
+      "name": "State timeline",
       "version": ""
     },
     {
@@ -67,7 +67,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "green",
             "mode": "thresholds"
           },
           "custom": {
@@ -78,10 +77,11 @@
               "tooltip": false,
               "viz": false
             },
-            "lineWidth": 1
+            "insertNulls": false,
+            "lineWidth": 0,
+            "spanNulls": false
           },
           "mappings": [],
-          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -106,12 +106,13 @@
       },
       "id": 2,
       "options": {
-        "colWidth": 0.9,
+        "alignValue": "left",
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": false
         },
+        "mergeValues": true,
         "rowHeight": 0.9,
         "showValue": "auto",
         "tooltip": {
@@ -128,7 +129,7 @@
           "expr": "probe_success{job=\"blackbox_icmp\"}",
           "format": "heatmap",
           "instant": false,
-          "interval": "2m",
+          "interval": "30s",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A",
@@ -139,7 +140,7 @@
         }
       ],
       "title": "Ping Success",
-      "type": "status-history"
+      "type": "state-timeline"
     },
     {
       "datasource": {
@@ -239,7 +240,7 @@
           "exemplar": false,
           "expr": "probe_duration_seconds{job=\"blackbox_icmp\"}",
           "instant": false,
-          "interval": "",
+          "interval": "30s",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -346,6 +347,7 @@
         {
           "editorMode": "code",
           "expr": "100 - (avg_over_time(probe_success{job=\"blackbox_icmp\"}[1m]) * 100)",
+          "interval": "30s",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A",
@@ -359,20 +361,20 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
+  "refresh": "30s",
   "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Office Network Monitor",
   "uid": "e70445e8-b6e0-4a4f-8270-e13de9e5bf1d",
-  "version": 7,
+  "version": 10,
   "weekStart": "monday"
 }
