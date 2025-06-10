@@ -1,0 +1,21 @@
+# prometheus.yml
+scrape_configs:
+  - job_name: 'blackbox_icmp'
+    metrics_path: /probe  # Blackbox Exporter 提供探测结果的路径
+    params:
+      module: [ icmp_ping ]  # <-- 这里指定使用 blackbox.yml 中的 'icmp_ping' 模块
+    static_configs:
+      - targets:
+          - '8.8.8.8'          # <-- 第一个目标IP
+          - '1.1.1.1'          # <-- 第二个目标IP
+          - '10.154.200.32'
+          - '10.66.200.16'
+          - '223.5.5.5'
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        target_label: __param_target # 将 target 列表中的地址作为 'target' URL参数传递给 Blackbox
+      - source_labels: [ __param_target ]
+        target_label: instance # 设置 Prometheus 中的 instance 标签为目标地址
+      - target_label: __address__
+        replacement: localhost:9115  # Blackbox Exporter 的地址和端口
+
