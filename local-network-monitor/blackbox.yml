@@ -1,0 +1,11 @@
+modules:
+  icmp_ping: # 定义一个名为 'icmp_ping' 的模块
+    prober: icmp # 指定探测器类型为 icmp (ping)
+    timeout: 3s   # 设置单次探测的超时时间为3秒
+    icmp:
+      preferred_ip_protocol: "ip4" # 可选: "ip4" 或 "ip6"。默认为 "ip4"。
+        # 如果您的目标IP是IPv6地址，请设置为 "ip6"。
+      # 也可以使用 "ip4_first" 或 "ip6_first"。
+      payload_size: 56 # 可选: ICMP包的载荷大小 (默认为0，加上ICMP头部8字节，实际发送的IP包可能更小)。
+      # 传统的ping工具默认载荷大小通常是56字节（对于IPv4）。
+
