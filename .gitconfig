@@ -8,7 +8,7 @@
   autocrlf = input
   editor = vim
   pager = less --mouse
-  excludesfile = /home/spencercjh/.gitignore
+  excludesfile = ~/.gitignore
 [init]
   defaultBranch = main
 [tag]
